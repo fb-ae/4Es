@@ -553,7 +553,7 @@ body.ltr .orders-table th{text-align:left}
       <button class="admin-tab" onclick="switchAdminTab('products',this)">📦 المنتجات</button>
       <button class="admin-tab" onclick="switchAdminTab('homepage',this)">🏠 الرئيسية</button>
       <button class="admin-tab" onclick="switchAdminTab('discord',this)">🤖 Discord Bot</button>
-      <button class="admin-tab" id="staff-mgmt-tab" style="display:none" onclick="switchAdminTab('staffmgmt',this)">👑 إدارة الصلاحيات</button>
+      <button class="admin-tab" onclick="switchAdminTab('settings',this)">⚙️ الإعدادات</button>
     </div>
 
     <!-- ORDERS TAB -->
@@ -678,41 +678,36 @@ body.ltr .orders-table th{text-align:left}
       </div>
     </div>
 
-    <!-- STAFF MANAGEMENT TAB (kyra only) -->
-    <div class="admin-tab-content" id="tab-staffmgmt">
+    <!-- SETTINGS TAB (kyra only) -->
+    <div class="admin-tab-content" id="tab-settings">
       <div class="discord-settings">
-        <div class="ds-title"><span style="font-size:22px">👑</span> إدارة الصلاحيات</div>
-        <div class="ds-subtitle">فقط <strong style="color:var(--primary-bright)">kyrazero</strong> يمكنه إضافة وإزالة الوصول للوحة الإدارة</div>
-
-        <div class="ds-section">
-          <div class="ds-section-label">➕ إضافة حساب للستاف</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:end">
-            <div class="form-group" style="margin:0"><label class="form-label">اسم المستخدم</label><input class="form-input" type="text" id="new-staff-username" placeholder="username" autocomplete="off"></div>
-            <div class="form-group" style="margin:0"><label class="form-label">كلمة المرور</label><input class="form-input" type="password" id="new-staff-password" placeholder="••••••••"></div>
-            <button class="pm-add-btn" onclick="addStaffMember()" style="height:44px;white-space:nowrap">+ إضافة</button>
-          </div>
-          <div style="margin-top:14px">
-            <div class="form-label" style="margin-bottom:10px">الصلاحيات الممنوحة</div>
-            <div style="display:flex;gap:16px;flex-wrap:wrap">
-              <label style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text-muted);cursor:pointer"><input type="checkbox" id="perm-orders" checked style="accent-color:var(--primary);width:16px;height:16px"> 📋 الطلبات</label>
-              <label style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text-muted);cursor:pointer"><input type="checkbox" id="perm-products" style="accent-color:var(--primary);width:16px;height:16px"> 📦 المنتجات</label>
-              <label style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text-muted);cursor:pointer"><input type="checkbox" id="perm-homepage" style="accent-color:var(--primary);width:16px;height:16px"> 🏠 الرئيسية</label>
-              <label style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text-muted);cursor:pointer"><input type="checkbox" id="perm-discord" style="accent-color:var(--primary);width:16px;height:16px"> 🤖 Discord</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="ds-section">
-          <div class="ds-section-label">👥 قائمة الستاف الحالية</div>
-          <div id="staff-list-container" style="margin-top:10px"></div>
-        </div>
+        <div class="ds-title"><span style="font-size:22px">⚙️</span> إعدادات الحساب</div>
+        <div class="ds-subtitle">هذه اللوحة حصرية لـ <strong style="color:var(--primary-bright)">kyra</strong> فقط — لا يمكن لأي شخص آخر الوصول إليها</div>
 
         <div class="ds-section" style="border-color:rgba(139,92,246,.4)">
-          <div class="ds-section-label" style="color:var(--primary-bright)">🔐 تغيير كلمة مرور kyrazero</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:end">
-            <div class="form-group" style="margin:0"><label class="form-label">كلمة المرور الجديدة</label><input class="form-input" type="password" id="kyra-new-pass" placeholder="••••••••"></div>
-            <div class="form-group" style="margin:0"><label class="form-label">تأكيد كلمة المرور</label><input class="form-input" type="password" id="kyra-confirm-pass" placeholder="••••••••"></div>
-            <button class="pm-add-btn" onclick="changeKyraPassword()" style="height:44px;background:linear-gradient(135deg,var(--primary-dark),var(--accent))">تغيير</button>
+          <div class="ds-section-label" style="color:var(--primary-bright)">🔐 تغيير كلمة المرور</div>
+          <div class="form-hint" style="margin-bottom:14px">كلمة المرور محفوظة في قاعدة البيانات وتُطبّق فوراً عند الحفظ</div>
+          <div class="form-group"><label class="form-label">كلمة المرور الحالية</label><input class="form-input" type="password" id="curr-pass" placeholder="••••••••"></div>
+          <div class="form-group"><label class="form-label">كلمة المرور الجديدة</label><input class="form-input" type="password" id="new-pass" placeholder="••••••••"></div>
+          <div class="form-group"><label class="form-label">تأكيد كلمة المرور الجديدة</label><input class="form-input" type="password" id="confirm-pass" placeholder="••••••••"></div>
+          <button class="ds-save-btn" onclick="changeAdminPassword()" style="margin-top:0">🔒 حفظ كلمة المرور الجديدة</button>
+        </div>
+
+        <div class="ds-section">
+          <div class="ds-section-label">🔑 طرق الدخول السرية</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:6px">
+            <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(139,92,246,.05);border-radius:10px;border:1px solid rgba(139,92,246,.1)">
+              <span style="font-size:20px">⌨️</span>
+              <div><div style="font-size:13px;color:var(--text);font-weight:600">اختصار لوحة المفاتيح</div><div style="font-size:12px;color:var(--text-muted);margin-top:3px">اضغط <code style="background:rgba(139,92,246,.15);padding:2px 8px;border-radius:5px;font-family:monospace">Ctrl + Shift + A</code> في أي مكان</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(139,92,246,.05);border-radius:10px;border:1px solid rgba(139,92,246,.1)">
+              <span style="font-size:20px">🖱️</span>
+              <div><div style="font-size:13px;color:var(--text);font-weight:600">النقر على الشعار</div><div style="font-size:12px;color:var(--text-muted);margin-top:3px">انقر على شعار 4E بالناف بار <strong>5 مرات</strong> بسرعة</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(139,92,246,.05);border-radius:10px;border:1px solid rgba(139,92,246,.1)">
+              <span style="font-size:20px">🔗</span>
+              <div><div style="font-size:13px;color:var(--text);font-weight:600">رابط مباشر</div><div style="font-size:12px;color:var(--text-muted);margin-top:3px">أضف <code style="background:rgba(139,92,246,.15);padding:2px 8px;border-radius:5px;font-family:monospace">#admin-access</code> لنهاية رابط الموقع</div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -846,20 +841,22 @@ body.ltr .orders-table th{text-align:left}
 })();
 
 /* ===== CONFIG ===== */
-const JSONBIN_BIN_ID   = '69cb7bbcaaba882197adad77';
-const JSONBIN_API_KEY  = '$2a$10$9hhVURU0FBLLDWZOM3meOuTeO.kbXmt6X5848jJmqoTVVjISu5jmO';
-const JSONBIN_URL      = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
+const JSONBIN_BIN_ID  = '69cb7bbcaaba882197adad77';
+const JSONBIN_API_KEY = '$2a$10$9hhVURU0FBLLDWZOM3meOuTeO.kbXmt6X5848jJmqoTVVjISu5jmO';
+const JSONBIN_URL     = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
 
-// KYRA is the hardcoded super-admin. Password can be changed via DB.
-const KYRA_USERNAME = 'kyrazero';
-const KYRA_DEFAULT_PASSWORD = '4estore99';
+// ██████████████████████████████████████████████
+// ONLY "kyra" can access the admin panel — period.
+// Username is case-sensitive. No other account works.
+// ██████████████████████████████████████████████
+const ADMIN_USERNAME = 'kyra';
+const ADMIN_PASSWORD = '4estore99'; // kyra can change this from inside the panel
 
 /* ===== STATE ===== */
 let state = {
-  lang:'ar', currentUser:null, isAdmin:false, isKyra:false,
-  staffPerms:{}, // permissions for current staff session
+  lang:'ar', currentUser:null, isAdmin:false,
   cart:[], cartOpen:false,
-  dbData:{ users:[], orders:[], products:[], homepageSettings:{}, discordSettings:{}, staffList:[], kyraPassword:KYRA_DEFAULT_PASSWORD },
+  dbData:{ users:[], orders:[], products:[], homepageSettings:{}, discordSettings:{}, adminPassword: ADMIN_PASSWORD },
   adminFilter:'all'
 };
 
@@ -910,8 +907,7 @@ async function loadDB(){
       products: record.products||null,
       homepageSettings: record.homepageSettings||{},
       discordSettings: record.discordSettings||{},
-      staffList: record.staffList||[],
-      kyraPassword: record.kyraPassword||KYRA_DEFAULT_PASSWORD
+      adminPassword: record.adminPassword||ADMIN_PASSWORD
     };
     // Use DB products if present, else defaults
     if(!state.dbData.products || !state.dbData.products.length){
@@ -1085,7 +1081,7 @@ async function doRegister(){
     updateAuthUI(); closeAll(); showToast(`تم إنشاء الحساب! مرحباً ${name} 🎉`,'success');
   }catch(e){showToast('خطأ في إنشاء الحساب','error')}
 }
-function logout(){state.currentUser=null;state.isAdmin=false;state.isKyra=false;state.staffPerms={};sessionStorage.removeItem('4e_session');updateAuthUI();showToast('تم تسجيل الخروج','info')}
+function logout(){state.currentUser=null;state.isAdmin=false;sessionStorage.removeItem('4e_session');updateAuthUI();showToast('تم تسجيل الخروج','info')}
 function updateAuthUI(){
   const lb=document.getElementById('login-btn'), ub=document.getElementById('user-badge'), ubn=document.getElementById('user-badge-name');
   if(state.currentUser){lb.style.display='none';ub.style.display='inline-flex';ubn.textContent=state.currentUser.name||state.currentUser.username}
@@ -1329,35 +1325,24 @@ function loadDiscordSettingsUI(){
 function openAdminLogin(){openModal('admin-login-modal')}
 
 async function doAdminLogin(){
-  const u=document.getElementById('admin-username').value.trim().toLowerCase();
-  const p=document.getElementById('admin-password').value;
-  if(!u||!p){showToast('أدخل بيانات الدخول','error');return}
+  const u = document.getElementById('admin-username').value.trim(); // NOT lowercased — exact match
+  const p = document.getElementById('admin-password').value;
 
-  // Always load DB first to get latest staff list and kyra password
+  if(!u || !p){ showToast('أدخل بيانات الدخول','error'); return }
+
+  // Load DB to get the latest stored password (kyra can update it)
   await loadDB();
+  const storedPass = state.dbData.adminPassword || ADMIN_PASSWORD;
 
-  // KYRA super-admin check
-  const kyraPass=state.dbData.kyraPassword||KYRA_DEFAULT_PASSWORD;
-  if(u===KYRA_USERNAME && p===kyraPass){
-    state.isAdmin=true;
-    state.isKyra=true;
-    state.staffPerms={orders:true,products:true,homepage:true,discord:true,staffmgmt:true};
+  // Exact username match — "kyra" only, case-sensitive
+  if(u === ADMIN_USERNAME && p === storedPass){
+    state.isAdmin = true;
     closeAll();
     showAdminPanel();
     return;
   }
 
-  // Check staff list (managed by kyra)
-  const staffMember=(state.dbData.staffList||[]).find(s=>s.username.toLowerCase()===u && s.password===p && s.active);
-  if(staffMember){
-    state.isAdmin=true;
-    state.isKyra=false;
-    state.staffPerms=staffMember.perms||{orders:true};
-    closeAll();
-    showAdminPanel();
-    return;
-  }
-
+  // Wrong credentials — generic message, no hints
   showToast('بيانات غير صحيحة','error');
 }
 
@@ -1366,64 +1351,22 @@ async function showAdminPanel(){
   document.getElementById('footer').style.display='none';
   document.getElementById('admin-panel').classList.add('active');
 
-  // Role badge
   const badge=document.getElementById('admin-role-badge');
-  if(badge) badge.innerHTML=state.isKyra
-    ?'<span class="kyra-badge">👑 kyrazero — مالك</span>'
-    :'<span class="sync-badge synced">🛡️ ستاف</span>';
+  if(badge) badge.innerHTML='<span class="kyra-badge">👑 kyra — المالك</span>';
 
   showToast('⏳ جاري التحميل...','info');
   setSyncBadge('syncing');
   await loadDB();
-
-  // Apply tab permissions — hide tabs user can't access
-  applyTabPermissions();
-
   renderAdminStats(); renderOrdersTable(state.dbData.orders);
   renderProductManager(); loadHomepageEditorValues(); loadDiscordSettingsUI();
-  if(state.isKyra) renderStaffList();
-  showToast('✓ تم تحميل البيانات','success');
-}
-
-function applyTabPermissions(){
-  const perms=state.staffPerms;
-  const tabMap={
-    'orders':    {tab:'.admin-tab:nth-child(1)',  content:'tab-orders',    show:perms.orders!==false},
-    'products':  {tab:'.admin-tab:nth-child(2)',  content:'tab-products',  show:!!perms.products},
-    'homepage':  {tab:'.admin-tab:nth-child(3)',  content:'tab-homepage',  show:!!perms.homepage},
-    'discord':   {tab:'.admin-tab:nth-child(4)',  content:'tab-discord',   show:!!perms.discord},
-    'staffmgmt': {tab:'#staff-mgmt-tab',          content:'tab-staffmgmt', show:state.isKyra}
-  };
-
-  // Show/hide staff management tab
-  const smTab=document.getElementById('staff-mgmt-tab');
-  if(smTab) smTab.style.display=state.isKyra?'':'none';
-
-  // For non-kyra staff, show only permitted tabs
-  if(!state.isKyra){
-    // Hide tabs based on permissions
-    const allTabs=document.querySelectorAll('.admin-tabs .admin-tab:not(#staff-mgmt-tab)');
-    const tabOrder=['orders','products','homepage','discord'];
-    allTabs.forEach((tab,i)=>{
-      const key=tabOrder[i];
-      if(key) tab.style.display=perms[key]?'':'none';
-    });
-    // Find first visible tab and activate it
-    let firstShown=null;
-    allTabs.forEach((tab,i)=>{
-      if(tab.style.display!=='none' && !firstShown) firstShown={tab,key:tabOrder[i]};
-    });
-    if(firstShown) switchAdminTab(firstShown.key, firstShown.tab);
-  }
+  loadChangePasswordUI();
+  showToast('✓ مرحباً kyra 👑','success');
 }
 
 function exitAdmin(){
-  state.isAdmin=false; state.isKyra=false; state.staffPerms={};
+  state.isAdmin=false;
   document.getElementById('admin-panel').classList.remove('active');
   document.getElementById('footer').style.display='';
-  // Restore all tabs visibility for next login
-  document.querySelectorAll('.admin-tabs .admin-tab').forEach(t=>t.style.display='');
-  document.getElementById('staff-mgmt-tab').style.display='none';
   showSection('home');
 }
 
@@ -1526,115 +1469,32 @@ async function savePayLink(){
   }catch(e){showToast('خطأ في الحفظ','error')}
 }
 
-/* ===== STAFF MANAGEMENT (kyra only) ===== */
-async function addStaffMember(){
-  if(!state.isKyra){showToast('غير مصرح','error');return}
-  const username=document.getElementById('new-staff-username').value.trim();
-  const password=document.getElementById('new-staff-password').value;
-  if(!username||!password){showToast('أدخل اسم المستخدم وكلمة المرور','error');return}
-  if(password.length<6){showToast('كلمة المرور 6 أحرف على الأقل','error');return}
-  if(username.toLowerCase()===KYRA_USERNAME){showToast('لا يمكن استخدام هذا الاسم','error');return}
-
-  const perms={
-    orders: document.getElementById('perm-orders').checked,
-    products: document.getElementById('perm-products').checked,
-    homepage: document.getElementById('perm-homepage').checked,
-    discord: document.getElementById('perm-discord').checked
-  };
-
-  if(!state.dbData.staffList) state.dbData.staffList=[];
-  const existing=state.dbData.staffList.find(s=>s.username.toLowerCase()===username.toLowerCase());
-  if(existing){showToast('هذا المستخدم موجود بالفعل في قائمة الستاف','warning');return}
-
-  state.dbData.staffList.push({id:Date.now(), username, password, perms, active:true, addedAt:new Date().toISOString()});
-  try{
-    await saveDB(); renderStaffList();
-    document.getElementById('new-staff-username').value='';
-    document.getElementById('new-staff-password').value='';
-    showToast(`✓ تم إضافة ${username} للستاف`,'success');
-  }catch(e){showToast('خطأ في الحفظ','error')}
+/* ===== KYRA SETTINGS ===== */
+function loadChangePasswordUI(){
+  // Clear password fields each time panel opens
+  ['curr-pass','new-pass','confirm-pass'].forEach(id=>{const el=document.getElementById(id);if(el) el.value=''});
 }
 
-async function toggleStaffActive(staffId){
-  if(!state.isKyra) return;
-  const member=state.dbData.staffList.find(s=>s.id===staffId); if(!member) return;
-  member.active=!member.active;
-  try{await saveDB();renderStaffList();showToast(member.active?`✓ تم تفعيل ${member.username}`:`تم تعطيل ${member.username}`,'info')}
-  catch(e){showToast('خطأ في الحفظ','error')}
-}
+async function changeAdminPassword(){
+  if(!state.isAdmin){ showToast('غير مصرح','error'); return }
+  const curr = document.getElementById('curr-pass').value;
+  const np   = document.getElementById('new-pass').value;
+  const cp   = document.getElementById('confirm-pass').value;
 
-async function removeStaffMember(staffId){
-  if(!state.isKyra) return;
-  const member=state.dbData.staffList.find(s=>s.id===staffId); if(!member) return;
-  if(!confirm(`هل تريد حذف ${member.username} من الستاف نهائياً؟`)) return;
-  state.dbData.staffList=state.dbData.staffList.filter(s=>s.id!==staffId);
-  try{await saveDB();renderStaffList();showToast(`تم حذف ${member.username}`,'info')}
-  catch(e){showToast('خطأ في الحذف','error')}
-}
+  // Validate current password
+  const storedPass = state.dbData.adminPassword || ADMIN_PASSWORD;
+  if(curr !== storedPass){ showToast('كلمة المرور الحالية غير صحيحة','error'); return }
+  if(!np || !cp){ showToast('أدخل كلمة المرور الجديدة وتأكيدها','error'); return }
+  if(np !== cp){ showToast('كلمتا المرور غير متطابقتين','error'); return }
+  if(np.length < 6){ showToast('كلمة المرور يجب أن تكون 6 أحرف على الأقل','error'); return }
 
-async function updateStaffPerms(staffId){
-  if(!state.isKyra) return;
-  const member=state.dbData.staffList.find(s=>s.id===staffId); if(!member) return;
-  // Read from inline checkboxes
-  member.perms={
-    orders:  document.getElementById(`sp-orders-${staffId}`).checked,
-    products:document.getElementById(`sp-products-${staffId}`).checked,
-    homepage:document.getElementById(`sp-homepage-${staffId}`).checked,
-    discord: document.getElementById(`sp-discord-${staffId}`).checked
-  };
-  try{await saveDB();showToast(`✓ تم تحديث صلاحيات ${member.username}`,'success')}
-  catch(e){showToast('خطأ في الحفظ','error')}
-}
-
-function renderStaffList(){
-  const container=document.getElementById('staff-list-container'); if(!container) return;
-  const list=state.dbData.staffList||[];
-  if(!list.length){
-    container.innerHTML=`<div style="text-align:center;color:var(--text-dim);padding:24px;font-size:13px">لا يوجد ستاف بعد — أضف أول عضو أعلاه</div>`;
-    return;
-  }
-  container.innerHTML=list.map(s=>`
-    <div style="background:rgba(6,4,18,.6);border:1px solid rgba(139,92,246,.12);border-radius:12px;padding:16px;margin-bottom:10px;transition:all .2s" onmouseover="this.style.borderColor='rgba(139,92,246,.3)'" onmouseout="this.style.borderColor='rgba(139,92,246,.12)'">
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:12px">
-        <div style="display:flex;align-items:center;gap:10px">
-          <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--primary-dark),var(--accent));display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff">${s.username.charAt(0).toUpperCase()}</div>
-          <div>
-            <div style="font-weight:700;color:var(--text);font-size:14px">${s.username}</div>
-            <div style="font-size:11px;color:var(--text-dim)">${new Date(s.addedAt).toLocaleDateString('ar-SA')}</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:8px;align-items:center">
-          <span style="padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;${s.active?'background:rgba(16,185,129,.1);color:var(--neon-green);border:1px solid rgba(16,185,129,.2)':'background:rgba(239,68,68,.1);color:var(--danger);border:1px solid rgba(239,68,68,.2)'}">${s.active?'✓ فعّال':'✗ معطّل'}</span>
-          <button onclick="toggleStaffActive(${s.id})" class="action-btn ${s.active?'danger':'complete'}" style="font-size:11px">${s.active?'تعطيل':'تفعيل'}</button>
-          <button onclick="removeStaffMember(${s.id})" class="action-btn danger" style="font-size:11px">🗑️ حذف</button>
-        </div>
-      </div>
-      <div style="border-top:1px solid rgba(139,92,246,.08);padding-top:12px">
-        <div style="font-size:11px;color:var(--text-dim);margin-bottom:8px;letter-spacing:1px;text-transform:uppercase">الصلاحيات</div>
-        <div style="display:flex;gap:14px;flex-wrap:wrap">
-          <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted);cursor:pointer"><input type="checkbox" id="sp-orders-${s.id}" ${s.perms?.orders?'checked':''} style="accent-color:var(--primary)" onchange="updateStaffPerms(${s.id})"> 📋 الطلبات</label>
-          <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted);cursor:pointer"><input type="checkbox" id="sp-products-${s.id}" ${s.perms?.products?'checked':''} style="accent-color:var(--primary)" onchange="updateStaffPerms(${s.id})"> 📦 المنتجات</label>
-          <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted);cursor:pointer"><input type="checkbox" id="sp-homepage-${s.id}" ${s.perms?.homepage?'checked':''} style="accent-color:var(--primary)" onchange="updateStaffPerms(${s.id})"> 🏠 الرئيسية</label>
-          <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted);cursor:pointer"><input type="checkbox" id="sp-discord-${s.id}" ${s.perms?.discord?'checked':''} style="accent-color:var(--primary)" onchange="updateStaffPerms(${s.id})"> 🤖 Discord</label>
-        </div>
-      </div>
-    </div>`).join('');
-}
-
-async function changeKyraPassword(){
-  if(!state.isKyra){showToast('غير مصرح','error');return}
-  const np=document.getElementById('kyra-new-pass').value;
-  const cp=document.getElementById('kyra-confirm-pass').value;
-  if(!np||!cp){showToast('أدخل كلمة المرور الجديدة وتأكيدها','error');return}
-  if(np!==cp){showToast('كلمتا المرور غير متطابقتين','error');return}
-  if(np.length<6){showToast('كلمة المرور 6 أحرف على الأقل','error');return}
-  state.dbData.kyraPassword=np;
+  state.dbData.adminPassword = np;
+  setSyncBadge('syncing');
   try{
     await saveDB();
-    document.getElementById('kyra-new-pass').value='';
-    document.getElementById('kyra-confirm-pass').value='';
-    showToast('✓ تم تغيير كلمة مرور kyrazero','success');
-  }catch(e){showToast('خطأ في الحفظ','error')}
+    ['curr-pass','new-pass','confirm-pass'].forEach(id=>{const el=document.getElementById(id);if(el) el.value=''});
+    showToast('✅ تم تغيير كلمة المرور بنجاح','success');
+  }catch(e){ showToast('خطأ في الحفظ','error') }
 }
 
 /* ===== PRODUCT MANAGER ===== */
