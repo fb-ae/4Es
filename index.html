@@ -400,12 +400,62 @@ footer::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;
 .pay-modal-order-info strong{color:var(--text)}
 .spinner{width:20px;height:20px;border:2px solid rgba(139,92,246,.15);border-top-color:var(--primary);border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
 @keyframes spin{to{transform:rotate(360deg)}}
-/* Staff permission checkboxes */
-.perm-row{display:flex;gap:14px;flex-wrap:wrap;padding:10px 0}
-.perm-label{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted);cursor:pointer;transition:color .2s}
-.perm-label:hover{color:var(--primary-bright)}
+/* ---- MY ORDERS ---- */
+#section-myorders .section{padding-top:40px}
+.myorders-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px;flex-wrap:wrap;gap:14px}
+.myorders-title{font-family:'Orbitron',monospace;font-size:20px;font-weight:900;background:linear-gradient(135deg,var(--primary-bright),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.myorders-empty{text-align:center;padding:80px 20px;color:var(--text-muted)}
+.myorders-empty-icon{font-size:64px;margin-bottom:16px;opacity:.3}
+.myorders-empty-text{font-size:15px;margin-bottom:24px}
 
-/* Kyra crown badge */
+.order-card{background:linear-gradient(145deg,rgba(16,13,34,.9),rgba(10,8,22,.95));border:1px solid rgba(139,92,246,.15);border-radius:20px;overflow:hidden;margin-bottom:18px;transition:all .3s}
+.order-card:hover{border-color:rgba(139,92,246,.35);box-shadow:0 8px 32px rgba(139,92,246,.15)}
+.order-card-header{padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-bottom:1px solid rgba(139,92,246,.08)}
+.order-card-id{font-family:'Orbitron',monospace;font-size:13px;font-weight:900;color:var(--primary-bright);background:rgba(139,92,246,.1);padding:6px 12px;border-radius:8px;border:1px solid rgba(139,92,246,.2)}
+.order-card-date{font-size:12px;color:var(--text-dim)}
+.order-card-body{padding:20px 24px}
+.order-card-products{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.order-product-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:8px;background:rgba(139,92,246,.07);border:1px solid rgba(139,92,246,.12);font-size:12px;color:var(--text-muted)}
+.order-card-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.order-card-total{font-family:'Orbitron',monospace;font-size:18px;font-weight:900;color:var(--primary-bright)}
+
+/* Status timeline */
+.order-status-track{display:flex;align-items:center;gap:0;margin:16px 0}
+.status-step{display:flex;flex-direction:column;align-items:center;flex:1;position:relative}
+.status-step::before{content:'';position:absolute;top:14px;right:50%;width:100%;height:2px;background:rgba(139,92,246,.15);z-index:0}
+.status-step:first-child::before{display:none}
+.status-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;border:2px solid rgba(139,92,246,.2);background:var(--bg-card);position:relative;z-index:1;transition:all .3s}
+.status-dot.done{background:linear-gradient(135deg,var(--primary-dark),var(--primary));border-color:var(--primary);box-shadow:0 0 12px rgba(139,92,246,.5)}
+.status-dot.active{background:linear-gradient(135deg,var(--warning),#D97706);border-color:var(--warning);box-shadow:0 0 12px rgba(245,158,11,.5);animation:statusPulse 1.5s ease-in-out infinite}
+.status-dot.completed-dot{background:linear-gradient(135deg,#059669,var(--neon-green));border-color:var(--neon-green);box-shadow:0 0 12px rgba(16,185,129,.5)}
+@keyframes statusPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.status-step::after{content:'';position:absolute;top:14px;left:50%;width:100%;height:2px;background:rgba(139,92,246,.15);z-index:0}
+.status-step:last-child::after{display:none}
+.status-step.line-done::before,.status-step.line-done::after{background:linear-gradient(90deg,var(--primary-dark),var(--primary));opacity:.6}
+.status-label{font-size:10px;color:var(--text-dim);margin-top:6px;text-align:center;font-weight:600;letter-spacing:.5px}
+.status-label.active-label{color:var(--warning)}
+.status-label.done-label{color:var(--primary-bright)}
+.status-label.green-label{color:var(--neon-green)}
+
+/* Payment proof upload on order card */
+.proof-section{margin-top:16px;padding-top:16px;border-top:1px solid rgba(139,92,246,.08)}
+.proof-section-label{font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.proof-input-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.proof-input{flex:1;min-width:200px;padding:10px 14px;background:rgba(6,4,18,.8);border:1px solid rgba(139,92,246,.15);border-radius:10px;color:var(--text);font-size:13px;outline:none;transition:all .25s;font-family:'Cairo',sans-serif}
+.proof-input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(139,92,246,.1)}
+.proof-input::placeholder{color:var(--text-dim)}
+.proof-submit-btn{padding:10px 18px;border-radius:10px;background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Cairo',sans-serif;transition:all .25s;white-space:nowrap;box-shadow:0 4px 14px rgba(139,92,246,.35)}
+.proof-submit-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(139,92,246,.55)}
+.proof-sent-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:8px;background:rgba(16,185,129,.1);color:var(--neon-green);border:1px solid rgba(16,185,129,.2);font-size:12px;font-weight:700}
+
+/* Post-order success step (big order number reveal) */
+.success-order-num{font-family:'Orbitron',monospace;font-size:26px;font-weight:900;background:linear-gradient(135deg,var(--primary-bright),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;padding:12px 24px;border-radius:12px;border:1px solid rgba(139,92,246,.3);background-clip:text;display:inline-block;margin:10px 0;box-shadow:0 0 30px rgba(139,92,246,.2)}
+.proof-upload-step{background:rgba(6,4,18,.8);border:1px solid rgba(139,92,246,.2);border-radius:14px;padding:20px;margin:18px 0;text-align:right}
+.proof-upload-step-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px}
+.proof-upload-step-sub{font-size:12px;color:var(--text-muted);margin-bottom:14px;line-height:1.7}
+
+/* Staff management CSS cleanup (was unused) */
+.perm-row{display:flex;gap:14px;flex-wrap:wrap;padding:10px 0}
 .kyra-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:1px;background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(139,92,246,.15));color:var(--warning);border:1px solid rgba(245,158,11,.3)}
 
 body.ltr{direction:ltr}
@@ -421,6 +471,10 @@ body.ltr .orders-table th{text-align:left}
   .products-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
   #toast-container{right:16px;bottom:16px}
   .toast{max-width:calc(100vw - 32px)}
+  .order-status-track{gap:0}
+  .status-label{font-size:9px}
+  .proof-input-row{flex-direction:column}
+  .proof-input{width:100%}
 }
 </style>
 </head>
@@ -452,6 +506,7 @@ body.ltr .orders-table th{text-align:left}
     <div class="nav-link active" onclick="showSection('home')">الرئيسية</div>
     <div class="nav-link" onclick="showSection('products')">المنتجات</div>
     <div class="nav-link" onclick="showSection('reviews')">التقييمات</div>
+    <div class="nav-link" id="myorders-nav-link" style="display:none" onclick="showSection('myorders')">📦 طلباتي</div>
   </div>
   <div class="nav-actions">
     <button class="lang-toggle" onclick="toggleLang()" id="lang-btn">🌐 EN</button>
@@ -534,7 +589,24 @@ body.ltr .orders-table th{text-align:left}
     </section>
   </div>
 
-  <!-- ADMIN PANEL -->
+  <!-- MY ORDERS -->
+  <div id="section-myorders" style="display:none">
+    <section class="section">
+      <div class="myorders-header">
+        <div>
+          <div class="section-label">حسابي</div>
+          <div class="myorders-title">📦 طلباتي</div>
+        </div>
+        <button class="nav-btn ghost" onclick="loadMyOrders()" style="font-size:13px">🔄 تحديث</button>
+      </div>
+      <div id="myorders-container">
+        <div class="myorders-empty">
+          <div class="myorders-empty-icon">📦</div>
+          <div class="myorders-empty-text">جاري التحميل...</div>
+        </div>
+      </div>
+    </section>
+  </div>
   <div id="admin-panel">
     <div class="admin-header">
       <div>
@@ -571,7 +643,7 @@ body.ltr .orders-table th{text-align:left}
         <div class="orders-table-wrap">
           <table class="orders-table">
             <thead><tr>
-              <th>رقم الطلب</th><th>العميل</th><th>Discord</th><th>المنتجات</th><th>المجموع</th><th>الحالة</th><th>التاريخ</th><th>الإجراءات</th>
+              <th>رقم الطلب</th><th>العميل</th><th>Discord</th><th>المنتجات</th><th>المجموع</th><th>الإثبات</th><th>الحالة</th><th>التاريخ</th><th>الإجراءات</th>
             </tr></thead>
             <tbody id="orders-tbody"></tbody>
           </table>
@@ -723,6 +795,7 @@ body.ltr .orders-table th{text-align:left}
     <span class="footer-link" onclick="showSection('home')">الرئيسية</span>
     <span class="footer-link" onclick="showSection('products')">المنتجات</span>
     <span class="footer-link" onclick="showSection('reviews')">التقييمات</span>
+    <span class="footer-link" id="footer-myorders-link" style="display:none" onclick="showSection('myorders')">📦 طلباتي</span>
   </div>
   <p class="footer-copy">© 2025 4E Store. All rights reserved. Made with 💜</p>
 </footer>
@@ -764,21 +837,40 @@ body.ltr .orders-table th{text-align:left}
 </div>
 
 <div class="modal" id="checkout-modal">
-  <div class="modal-header"><div class="modal-icon">💳</div><div><div class="modal-title">إتمام الطلب</div><div class="modal-sub">أكمل بيانات الدفع لإرسال طلبك</div></div></div>
+  <div class="modal-header"><div class="modal-icon">🛒</div><div><div class="modal-title">تأكيد الطلب</div><div class="modal-sub">راجع طلبك وأرسله — ستدفع بعد التأكيد</div></div></div>
   <div class="user-badge" style="margin-bottom:18px;display:inline-flex"><span class="dot"></span><span id="checkout-username-badge"></span></div>
   <div class="order-summary" id="checkout-order-summary"></div>
-  <div class="form-group"><label class="form-label">رابط الدفع / إثبات التحويل</label><input class="form-input" type="url" id="checkout-payment-link" placeholder="https://..."><div class="form-hint">الصق رابط إثبات الدفع هنا</div></div>
-  <div class="form-group"><label class="form-label">ملاحظات (اختياري)</label><input class="form-input" type="text" id="checkout-notes" placeholder="..."></div>
-  <button class="modal-btn-primary" onclick="submitOrder()">✓ تأكيد الطلب</button>
+  <div class="form-group"><label class="form-label">ملاحظات (اختياري)</label><input class="form-input" type="text" id="checkout-notes" placeholder="أي ملاحظات للأدمن..."></div>
+  <button class="modal-btn-primary" onclick="submitOrder()">✓ إرسال الطلب</button>
 </div>
 
-<div class="modal" id="success-modal">
-  <div style="text-align:center;padding:20px 0">
-    <div style="font-size:64px;margin-bottom:22px;filter:drop-shadow(0 0 20px rgba(16,185,129,.5))">✅</div>
-    <div class="modal-title" style="font-size:24px;margin-bottom:12px">تم إرسال طلبك!</div>
-    <div style="font-size:14px;color:var(--text-muted);margin-bottom:26px;line-height:1.8" id="success-msg"></div>
-    <div style="background:rgba(6,4,18,.7);border:1px solid rgba(139,92,246,.15);border-radius:12px;padding:16px;margin-bottom:22px;font-size:13px;color:var(--text-muted)">📱 سيتم إرسال رابط الدفع إلى حسابك على Discord عند تأكيد الأدمن للطلب</div>
-    <button class="modal-btn-primary" onclick="closeAll()">متابعة التسوق</button>
+<div class="modal" id="success-modal" style="max-width:520px">
+  <div style="text-align:center;padding:10px 0 20px">
+    <div style="font-size:56px;margin-bottom:16px;filter:drop-shadow(0 0 20px rgba(16,185,129,.5))">🎉</div>
+    <div class="modal-title" style="font-size:22px;margin-bottom:8px">تم إرسال طلبك بنجاح!</div>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:20px">احفظ رقم طلبك — ستحتاجه للمتابعة</div>
+
+    <!-- Big order number -->
+    <div style="margin-bottom:24px">
+      <div style="font-size:11px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">رقم الطلب</div>
+      <div class="success-order-num" id="success-order-num">#4E-0000</div>
+    </div>
+
+    <!-- Payment proof upload step -->
+    <div class="proof-upload-step" style="text-align:right">
+      <div class="proof-upload-step-title">💳 الخطوة التالية — رفع إثبات الدفع</div>
+      <div class="proof-upload-step-sub">أرسل إثبات تحويل المبلغ الآن وسيتم معالجة طلبك بأسرع وقت. يمكنك أيضاً رفعه لاحقاً من صفحة <strong>طلباتي</strong>.</div>
+      <div class="proof-input-row">
+        <input class="proof-input" type="url" id="success-proof-input" placeholder="رابط إثبات الدفع (صورة أو رابط)...">
+        <button class="proof-submit-btn" onclick="submitProofFromSuccess()">إرسال ✓</button>
+      </div>
+      <div id="success-proof-status" style="margin-top:8px;font-size:12px;color:var(--text-muted)"></div>
+    </div>
+
+    <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">
+      <button class="modal-btn-primary" onclick="closeAll();showSection('myorders')" style="flex:1;margin-top:0">📦 عرض طلباتي</button>
+      <button class="modal-btn-secondary" onclick="closeAll()" style="flex:1;margin-top:0">متابعة التسوق</button>
+    </div>
   </div>
 </div>
 
@@ -890,9 +982,7 @@ const DEFAULT_PRODUCTS = [
 
 const REVIEWS = [
   {name:'L7',avatar:'L',stars:5,textAr:'متجر رهيب والتسليم كان خلال دقائق عبر Discord. أنصح فيه بشدة!',textEn:'Amazing store, delivery within minutes via Discord. Highly recommend!'},
-  {name:'Ahmed_Pro',avatar:'A',stars:5,textAr:'اشتريت ChatGPT Plus واستلمته فوراً. سعر ممتاز وخدمة احترافية',textEn:'Bought ChatGPT Plus, got it instantly. Great price and professional service'},
-  {name:'X_Gamer',avatar:'X',stars:5,textAr:'Game Pass بسعر لا يُصدق! الدعم الفني كان سريعاً جداً',textEn:'Game Pass at unbelievable price! Support was very fast'},
-  {name:'Sara_D',avatar:'S',stars:5,textAr:'تجربة تسوق رائعة، المنتجات أصلية 100% وتصل في نفس اللحظة',textEn:'Amazing shopping experience, 100% genuine products delivered instantly'},
+,
 ];
 
 /* ===== DB =====*/
@@ -1084,8 +1174,17 @@ async function doRegister(){
 function logout(){state.currentUser=null;state.isAdmin=false;sessionStorage.removeItem('4e_session');updateAuthUI();showToast('تم تسجيل الخروج','info')}
 function updateAuthUI(){
   const lb=document.getElementById('login-btn'), ub=document.getElementById('user-badge'), ubn=document.getElementById('user-badge-name');
-  if(state.currentUser){lb.style.display='none';ub.style.display='inline-flex';ubn.textContent=state.currentUser.name||state.currentUser.username}
-  else{lb.style.display='';ub.style.display='none'}
+  const moLink=document.getElementById('myorders-nav-link');
+  const moFooter=document.getElementById('footer-myorders-link');
+  if(state.currentUser){
+    lb.style.display='none'; ub.style.display='inline-flex'; ubn.textContent=state.currentUser.name||state.currentUser.username;
+    if(moLink) moLink.style.display='';
+    if(moFooter) moFooter.style.display='';
+  }else{
+    lb.style.display=''; ub.style.display='none';
+    if(moLink) moLink.style.display='none';
+    if(moFooter) moFooter.style.display='none';
+  }
 }
 
 /* ===== SECRET ADMIN ACCESS =====
@@ -1127,10 +1226,10 @@ function startCheckout(){
   toggleCart(); openModal('checkout-modal');
 }
 
+let _lastOrderId = ''; // track for proof upload from success modal
+
 async function submitOrder(){
-  const paymentLink=document.getElementById('checkout-payment-link').value.trim();
   const notes=document.getElementById('checkout-notes').value.trim();
-  if(!paymentLink){showToast('يرجى إدخال رابط الدفع','error');return}
   const orderId='#4E-'+Math.floor(1000+Math.random()*9000);
   const total=state.cart.reduce((s,i)=>s+i.price*i.qty,0);
   const order={
@@ -1138,19 +1237,64 @@ async function submitOrder(){
     username:state.currentUser.username, discord:state.currentUser.discord,
     discordId:state.currentUser.discordId||'',
     products:state.cart.map(i=>({id:i.id,nameAr:i.nameAr,nameEn:i.nameEn,price:i.price,qty:i.qty})),
-    total, status:'pending', paymentLink, payLinkSentToCustomer:null, notes, createdAt:new Date().toISOString()
+    total, status:'pending', paymentProof:'', payLinkSentToCustomer:null, notes,
+    createdAt:new Date().toISOString()
   };
   showToast('⏳ جاري إرسال الطلب...','info');
   try{
     await loadDB();
     state.dbData.orders.push(order);
     await saveDB();
-    // Notify staff via webhook
     await notifyStaffNewOrder(order);
+    _lastOrderId=orderId;
     state.cart=[]; updateCartUI(); closeAll();
-    document.getElementById('success-msg').innerHTML=`تم إرسال طلبك <strong>${orderId}</strong> بنجاح!<br>سنرسل رابط الدفع عبر <strong>Discord DM إلى ${state.currentUser.discord}</strong> بعد التأكيد.`;
+    // Show success modal with order number
+    document.getElementById('success-order-num').textContent=orderId;
+    document.getElementById('success-proof-input').value='';
+    document.getElementById('success-proof-status').textContent='';
     openModal('success-modal');
   }catch(e){showToast('خطأ في إرسال الطلب. حاول مرة أخرى.','error')}
+}
+
+async function submitProofFromSuccess(){
+  const proof=document.getElementById('success-proof-input').value.trim();
+  if(!proof){showToast('أدخل رابط إثبات الدفع','warning');return}
+  const st=document.getElementById('success-proof-status');
+  st.textContent='⏳ جاري الإرسال...';
+  const ok=await submitPaymentProof(_lastOrderId, proof);
+  if(ok){
+    st.innerHTML='<span style="color:var(--neon-green)">✅ تم إرسال إثبات الدفع بنجاح!</span>';
+    document.getElementById('success-proof-input').disabled=true;
+    document.querySelector('#success-modal .proof-submit-btn') && (document.querySelector('#success-modal .proof-submit-btn').disabled=true);
+  }else{
+    st.innerHTML='<span style="color:var(--danger)">✗ خطأ في الإرسال، حاول من صفحة طلباتي</span>';
+  }
+}
+
+async function submitPaymentProof(orderId, proofUrl){
+  try{
+    await loadDB();
+    const order=state.dbData.orders.find(o=>o.id===orderId);
+    if(!order) return false;
+    order.paymentProof=proofUrl;
+    order.proofSubmittedAt=new Date().toISOString();
+    if(order.status==='pending') order.status='pending'; // stays pending until admin confirms
+    await saveDB();
+    // notify staff via webhook
+    const cfg=getDiscordCfg();
+    if(cfg.staffWebhook){
+      await sendWebhook(cfg.staffWebhook,{username:'4E Store Bot',embeds:[{
+        title:'💳 عميل أرسل إثبات الدفع',color:0xA78BFA,
+        fields:[
+          {name:'الطلب',value:`\`${orderId}\``,inline:true},
+          {name:'العميل',value:order.discord||order.username,inline:true},
+          {name:'المبلغ',value:`${order.total} ر.س`,inline:true},
+          {name:'رابط الإثبات',value:proofUrl}
+        ],timestamp:new Date().toISOString(),footer:{text:'4E Store'}
+      }]});
+    }
+    return true;
+  }catch(e){return false}
 }
 
 /* ===== DISCORD INTEGRATION ===== */
@@ -1399,7 +1543,7 @@ function filterOrders(filter,e){
 
 function renderOrdersTable(orders){
   const tbody=document.getElementById('orders-tbody');
-  if(!orders||!orders.length){tbody.innerHTML=`<tr><td colspan="8" style="text-align:center;color:var(--text-dim);padding:40px">لا توجد طلبات بعد</td></tr>`;return}
+  if(!orders||!orders.length){tbody.innerHTML=`<tr><td colspan="9" style="text-align:center;color:var(--text-dim);padding:40px">لا توجد طلبات بعد</td></tr>`;return}
   const statusMap={pending:{ar:'معلق',cls:'pending',icon:'⏳'},processing:{ar:'جاري التنفيذ',cls:'processing',icon:'🔄'},completed:{ar:'مكتمل',cls:'completed',icon:'✅'},cancelled:{ar:'ملغي',cls:'cancelled',icon:'❌'}};
   tbody.innerHTML=[...orders].reverse().map(o=>{
     const st=statusMap[o.status]||statusMap.pending;
@@ -1409,11 +1553,13 @@ function renderOrdersTable(orders){
       <td><span class="order-id-badge">${o.id}</span></td>
       <td style="color:var(--text);font-weight:600">${o.customerName||o.username}</td>
       <td><div class="discord-tag"><div class="d-icon">D</div><span title="${o.discordId||''}">${o.discord||'-'}</span></div></td>
-      <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${products}">${products}</td>
+      <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${products}">${products}</td>
       <td style="font-family:'Orbitron',monospace;color:var(--primary-bright);font-weight:700">${o.total} ر.س</td>
+      <td>${o.paymentProof?`<span style="display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:5px;background:rgba(16,185,129,.1);color:var(--neon-green);font-size:10px;font-weight:700;border:1px solid rgba(16,185,129,.2)">💳 إثبات مرفق</span>`:'<span style="color:var(--text-dim);font-size:11px">—</span>'}</td>
       <td><span class="status-badge ${st.cls}">${st.icon} ${st.ar}</span></td>
       <td>${date}</td>
       <td><div class="action-btns">
+        ${o.paymentProof?`<a href="${o.paymentProof}" target="_blank" class="action-btn" style="text-decoration:none;border-color:rgba(16,185,129,.3);color:var(--neon-green)">👁 الإثبات</a>`:''}
         ${o.status!=='completed'?`<button class="action-btn complete" onclick="updateOrderStatus('${o.id}','completed')">✅ إنهاء</button>`:''}
         ${o.status==='pending'?`<button class="action-btn process" onclick="updateOrderStatus('${o.id}','processing')">🔄 تنفيذ</button>`:''}
         <button class="action-btn pay-link" onclick="openPayLinkModal('${o.id}')">💳 دفع</button>
@@ -1681,17 +1827,141 @@ async function saveHomepageSettings(){
   }
 }
 
-/* ===== NAVIGATION ===== */
+/* ===== MY ORDERS ===== */
+async function loadMyOrders(){
+  if(!state.currentUser) return;
+  const container=document.getElementById('myorders-container');
+  if(!container) return;
+  container.innerHTML=`<div class="myorders-empty"><div class="myorders-empty-icon" style="font-size:40px;opacity:.5">⏳</div><div class="myorders-empty-text">جاري تحميل طلباتك...</div></div>`;
+  await loadDB();
+  const myOrders=(state.dbData.orders||[]).filter(o=>o.userId===state.currentUser.id||o.username===state.currentUser.username);
+  renderMyOrders(myOrders);
+}
+
+function renderMyOrders(orders){
+  const container=document.getElementById('myorders-container');
+  if(!container) return;
+  if(!orders||!orders.length){
+    container.innerHTML=`<div class="myorders-empty">
+      <div class="myorders-empty-icon">📦</div>
+      <div class="myorders-empty-text">لا توجد طلبات بعد</div>
+      <button class="btn-hero-primary" onclick="showSection('products')" style="font-size:14px;padding:12px 28px">تصفح المنتجات ←</button>
+    </div>`;
+    return;
+  }
+  // newest first
+  const sorted=[...orders].sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+  container.innerHTML=sorted.map(o=>buildOrderCard(o)).join('');
+}
+
+function buildOrderCard(o){
+  const statusMap={
+    pending:  {label:'في الانتظار',  icon:'⏳', step:0},
+    processing:{label:'جاري التنفيذ',icon:'🔄', step:1},
+    completed: {label:'مكتمل',       icon:'✅', step:2},
+    cancelled: {label:'ملغي',        icon:'❌', step:-1}
+  };
+  const st=statusMap[o.status]||statusMap.pending;
+  const date=new Date(o.createdAt).toLocaleDateString('ar-SA',{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+  const products=(o.products||[]).map(p=>`<span class="order-product-chip">${p.nameAr} × ${p.qty}</span>`).join('');
+
+  // Status timeline steps
+  const steps=[
+    {label:'طلب وارد',   done:st.step>=0, active:st.step===0&&o.status!=='cancelled'},
+    {label:'قيد التنفيذ',done:st.step>=1, active:st.step===1},
+    {label:'مكتمل',      done:st.step>=2, active:st.step===2}
+  ];
+  const isCancelled=o.status==='cancelled';
+
+  const timeline=isCancelled
+    ?`<div style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);border-radius:10px;font-size:13px;font-weight:700;color:var(--danger)">❌ تم إلغاء هذا الطلب</div>`
+    :`<div class="order-status-track">
+        ${steps.map((s,i)=>{
+          const cls=s.done&&!s.active?'done':s.active?'active':'';
+          const dotCls=s.active?'active':s.done&&i===2?'completed-dot':s.done?'done':'';
+          const labelCls=s.active?'active-label':i===2&&s.done?'green-label':s.done?'done-label':'';
+          const lineCls=s.done&&i>0?'line-done':'';
+          return `<div class="status-step ${lineCls}"><div class="status-dot ${dotCls}">${s.done?'✓':i+1}</div><div class="status-label ${labelCls}">${s.label}</div></div>`;
+        }).join('')}
+      </div>`;
+
+  // Pay link from admin
+  const payLinkSection=o.payLinkSentToCustomer
+    ?`<div style="margin-top:12px;padding:12px 16px;background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.2);border-radius:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-size:13px;color:var(--neon-green);font-weight:700">💳 رابط الدفع جاهز!</span>
+        <a href="${o.payLinkSentToCustomer}" target="_blank" style="color:var(--accent);font-size:13px;font-weight:600;word-break:break-all">${o.payLinkSentToCustomer}</a>
+      </div>`:'';
+
+  // Payment proof section
+  const proofSection=o.status!=='completed'&&o.status!=='cancelled'
+    ?o.paymentProof
+      ?`<div class="proof-section"><div class="proof-section-label">إثبات الدفع</div><div class="proof-sent-badge">✅ تم إرسال الإثبات — في انتظار التأكيد</div><div style="font-size:11px;color:var(--text-dim);margin-top:6px;word-break:break-all">${o.paymentProof}</div></div>`
+      :`<div class="proof-section">
+          <div class="proof-section-label">📎 رفع إثبات الدفع</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:10px">أرسل رابط صورة إثبات التحويل لتسريع معالجة طلبك</div>
+          <div class="proof-input-row">
+            <input class="proof-input" type="url" id="proof-${o.id}" placeholder="رابط صورة/إثبات الدفع...">
+            <button class="proof-submit-btn" onclick="submitProofForOrder('${o.id}')">إرسال ✓</button>
+          </div>
+          <div id="proof-status-${o.id}" style="margin-top:6px;font-size:12px"></div>
+        </div>`
+    :'';
+
+  return `<div class="order-card" id="order-card-${o.id.replace('#','')}">
+    <div class="order-card-header">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="order-card-id">${o.id}</span>
+        <span class="order-card-date">📅 ${date}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="status-badge ${o.status}" style="font-size:12px">${st.icon} ${st.label}</span>
+        <span style="font-family:'Orbitron',monospace;font-size:15px;font-weight:900;color:var(--primary-bright)">${o.total} ر.س</span>
+      </div>
+    </div>
+    <div class="order-card-body">
+      <div class="order-card-products">${products}</div>
+      ${o.notes?`<div style="font-size:12px;color:var(--text-dim);margin-bottom:12px">📝 ${o.notes}</div>`:''}
+      ${timeline}
+      ${payLinkSection}
+      ${proofSection}
+    </div>
+  </div>`;
+}
+
+async function submitProofForOrder(orderId){
+  const input=document.getElementById(`proof-${orderId}`);
+  const statusEl=document.getElementById(`proof-status-${orderId}`);
+  const proof=input?input.value.trim():'';
+  if(!proof){showToast('أدخل رابط إثبات الدفع','warning');return}
+  if(statusEl) statusEl.innerHTML='<span style="color:var(--warning)">⏳ جاري الإرسال...</span>';
+  const ok=await submitPaymentProof(orderId,proof);
+  if(ok){
+    if(statusEl) statusEl.innerHTML='<span style="color:var(--neon-green)">✅ تم الإرسال! سيتم مراجعة طلبك قريباً.</span>';
+    if(input){input.disabled=true;input.style.opacity='.5'}
+    showToast('✅ تم إرسال إثبات الدفع','success');
+    // Refresh this card after short delay
+    setTimeout(()=>loadMyOrders(),1500);
+  }else{
+    if(statusEl) statusEl.innerHTML='<span style="color:var(--danger)">✗ خطأ في الإرسال، حاول مجدداً</span>';
+  }
+}
 function showSection(section){
   document.getElementById('admin-panel').classList.remove('active');
-  ['home','products','reviews'].forEach(s=>document.getElementById('section-'+s).style.display=s===section?'':'none');
+  ['home','products','reviews','myorders'].forEach(s=>{
+    const el=document.getElementById('section-'+s);
+    if(el) el.style.display=s===section?'':'none';
+  });
   document.getElementById('footer').style.display='';
   document.querySelectorAll('.nav-link').forEach(l=>{
     l.classList.remove('active');
-    if(l.getAttribute('onclick')&&l.getAttribute('onclick').includes(section)) l.classList.add('active');
+    if(l.getAttribute('onclick')&&l.getAttribute('onclick').includes(`'${section}'`)) l.classList.add('active');
   });
   if(section==='products') renderProducts();
   if(section==='reviews') renderReviews();
+  if(section==='myorders'){
+    if(!state.currentUser){openLoginModal();return}
+    loadMyOrders();
+  }
   window.scrollTo({top:0,behavior:'smooth'}); closeAll();
 }
 
